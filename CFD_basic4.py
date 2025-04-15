@@ -5,24 +5,25 @@ Created on Mon Apr 14 23:29:40 2025
 @author: ordi
 """
 
+#Burgers' equation
+
+
 import numpy as np
 import matplotlib.pyplot as plt
-from sympy.utilities.lambdify import lambdify
 
 
 ###variable declarations
 nx = 101
 nt = 100
 dx = 2 * np.pi / (nx - 1)
-nu = .07
+nu = 0.07
 dt = dx * nu
 
 x = np.linspace(0, 2 * np.pi, nx)
 un = np.empty(nx)
 t = 0
 
-ufunc = lambdify((t, x, nu), u)
-u = np.asarray([ufunc(t, x0, nu) for x0 in x])
+u =  #initialize u
 
 for n in range(nt):
     un = u.copy()
@@ -33,11 +34,11 @@ for n in range(nt):
                 (un[1] - 2 * un[0] + un[-2])
     u[-1] = u[0]
         
-u_analytical = numpy.asarray([ufunc(nt * dt, xi, nu) for xi in x])
+u_analytical = #compute analytical solution of Burgers' equation
 
 plt.figure(figsize=(11, 7), dpi=100)
 plt.plot(x,u, marker='o', lw=2, label='Computational')
 plt.plot(x, u_analytical, label='Analytical')
-plt.xlim([0, 2 * np.pi])
-plt.ylim([0, 10])
+plt.xlim([0, 2 * np.pi])  #limits to be adapted
+plt.ylim([0, 10]) #limits to be adapted
 plt.legend()
