@@ -37,5 +37,22 @@ u[int(.5 / dy):int(1 / dy + 1),int(.5 / dx):int(1 / dx + 1)] = 2
 ##the figsize parameter can be used to produce different sized images
 fig = plt.figure(figsize=(11, 7), dpi=100)
 ax = fig.add_subplot(2, 1, 2, projection="3d")   
-X, Y = np.meshgrid(x, y)                                            
+X, Y = np.meshgrid(x, y)
+plt.title("u(x,y,0)") #showing the title of the graph                                            
 surf = ax.plot_surface(X, Y, u[:], cmap=cm.viridis)
+
+for n in range(nt + 1): ##loop across number of time steps
+    un=u.copy()
+    u[1:, 1:]=(un[1:, 1:] - (c * dt / dx * (un[1:, 1:] - un[1:, :-1])) -
+                              (c * dt / dy * (un[1:, 1:] - un[:-1, 1:])))
+    u[0,:]=1
+    u[-1,:]=1
+    u[:,0]=1
+    u[:,-1]=1
+
+fig=plt.figure(figsize=(11, 7), dpi=100)
+ax=fig.add_subplot(2, 2, 2, projection="3d") 
+plt.title("u(x,y,t)") #showing the title of the graph
+plt.xlabel('axes des X') #coordonates in X
+plt.ylabel('axes des Y') #coordonates in Y
+surf2 = ax.plot_surface(X, Y, u[:], cmap=cm.viridis)
