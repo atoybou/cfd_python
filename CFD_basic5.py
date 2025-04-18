@@ -5,8 +5,6 @@ Created on Thu Apr 17 17:12:50 2025
 @author: ordin
 """
 
-from mpl_toolkits.mplot3d import Axes3D    ##New Library required for projected 3d plots
-
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import  cm
